@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { baseURL } from "../../config";
 import Product from "./Product";
 
+import './products.css';
+
 async function fetchProducts (setProducts) {
     const response = await fetch(`${baseURL}/products`);
 
@@ -13,7 +15,8 @@ async function fetchProducts (setProducts) {
 
 
 
-export default function Products () {
+export default function Products (props) {
+    const { setFocusedProduct } = props;
     const [products, setProducts] = useState();
 
     useEffect(() => {
@@ -25,11 +28,13 @@ export default function Products () {
 
 
     return (
-        <section>
-            {products ? products.map(product => {
-                return <Product key={product.id} product={product} />             
-            }) : undefined}
-            
+        <section id="products">
+            <h2>Products</h2>
+            <div className="products-list">
+                {products ? products.map(product => {
+                    return <Product key={product.id} product={product} setFocusedProduct={setFocusedProduct} />             
+                }) : null}
+            </div>
         </section>
     )
 }

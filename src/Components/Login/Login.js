@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { baseURL } from '../../config';
 import './login.css';
 
@@ -7,6 +7,7 @@ export default function Login (props) {
     const { setUser } = props;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const navigate = useNavigate();
 
 
     function handleEmail ({target}) {
@@ -37,6 +38,7 @@ export default function Login (props) {
         if (response.ok) {
             const jsonResponse = await response.json();
             setUser(jsonResponse);
+            navigate('/');
         } else {
             console.log('Unauthorized');
         }

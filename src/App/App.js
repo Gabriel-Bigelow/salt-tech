@@ -11,16 +11,19 @@ import Login from '../Components/Login/Login';
 import { useEffect, useState } from 'react';
 import { baseURL } from '../config';
 import Products from '../Components/Products/Products';
+import ProductDetails from '../Components/Products/ProductDetails';
 
 function App() {
   const [user, setUser] = useState();
+  const [focusedProduct, setFocusedProduct] = useState();
 
-  // console.log(user);
-  // console.log('user is above')
+  useEffect(() => {
+
+  }, [user])
 
   return (
     <Router>
-      <Navbar/>
+      <Navbar user={user} setUser={setUser} />
       
       <div id="app-body">
         <Routes>
@@ -28,7 +31,8 @@ function App() {
 
           <Route path="me" />
 
-          <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductDetails focusedProduct={focusedProduct} /> }/> 
+          <Route path="/products" element={<Products setFocusedProduct={setFocusedProduct} />} />
 
           <Route path="/login" element={<Login setUser={setUser} />}/>
         </Routes>

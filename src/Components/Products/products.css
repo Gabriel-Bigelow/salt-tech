@@ -1,0 +1,11 @@
+#products h2 {
+    text-align: center;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 7.5%;
+}

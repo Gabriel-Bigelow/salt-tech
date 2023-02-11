@@ -56,6 +56,16 @@ a:hover {
   color: white;
 }
 
+.color-light-slate {
+  background-color: rgb(100, 120, 142);
+  color: white;
+}
+
+.color-salt-slate {
+  background-color: rgb(240, 240, 255);
+  color: white;
+}
+
 #app-body { 
   position: absolute;
   top: 4rem;
