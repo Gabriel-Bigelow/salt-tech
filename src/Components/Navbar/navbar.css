@@ -1,0 +1,39 @@
+#navbar {
+    display: grid;
+    align-content: center;
+    position: fixed;
+    top: 0;
+    background-color: rgb(50, 60, 71);
+    width: 100%;
+    height: 4rem;
+    z-index: 100;
+    border-bottom: solid 1px rgb(180, 180, 180);
+}
+
+#navbar ul li, #navbar a {
+    font-weight: 600;
+    display: grid;
+    align-content: center;
+    color: white;
+}
+
+
+#navbar-group-1 {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-items {
+    display: inline-block;
+}
+
+#nav-logo {
+    height: 2.5rem;
+}
+
+.nav-icons {
+    height: 2.5rem;
+    width: auto;
+}

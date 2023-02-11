@@ -1,0 +1,25 @@
+#home {
+    display: grid;
+    background-color: black;
+    width: 100%;
+    justify-content: center;
+}
+
+#home-logo-wrap {
+    display: grid;
+    padding: 2rem 5%;
+    padding-bottom: 10rem;
+    justify-content: center;
+}
+#home-logo-wrap img {
+    max-width: 100%;
+}
+#home-logo-wrap:before {
+    content: '';
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 255), rgba(255, 255, 255, 0));
+    position: absolute;
+    height: 10rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
