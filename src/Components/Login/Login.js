@@ -4,7 +4,7 @@ import { baseURL } from '../../config';
 import './login.css';
 
 export default function Login (props) {
-    const { setUser } = props;
+    const { setLoggedIn } = props;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
@@ -20,10 +20,7 @@ export default function Login (props) {
 
     async function handleSubmit (event) {
         event.preventDefault();
-
-        console.log(email);
-        console.log(password);
-
+        
         const response = await fetch(`${baseURL}/auth/login`, {
             'method': 'post',
             headers: {
@@ -32,12 +29,12 @@ export default function Login (props) {
             body: JSON.stringify({
                 email: email,
                 password: password
-            })
+            }),
+            credentials: "include"
         })
 
         if (response.ok) {
-            const jsonResponse = await response.json();
-            setUser(jsonResponse);
+            setLoggedIn(true);
             navigate('/');
         } else {
             console.log('Unauthorized');

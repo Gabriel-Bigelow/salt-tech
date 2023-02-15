@@ -13,17 +13,29 @@ import { baseURL } from '../config';
 import Products from '../Components/Products/Products';
 import ProductDetails from '../Components/Products/ProductDetails';
 
+async function checkForLoggedIn (loggedIn, setLoggedIn) {
+  if (!loggedIn) {
+    const response = await fetch(`${baseURL}/users/me`, {
+      credentials: 'include'
+    });
+    
+    if (response.ok) {
+      setLoggedIn(true);
+    }
+  }
+}
+
 function App() {
-  const [user, setUser] = useState();
+  const [loggedIn, setLoggedIn] = useState();
   const [focusedProduct, setFocusedProduct] = useState();
 
   useEffect(() => {
-
-  }, [user])
+    checkForLoggedIn(loggedIn, setLoggedIn);
+  }, [loggedIn])
 
   return (
     <Router>
-      <Navbar user={user} setUser={setUser} />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       
       <div id="app-body">
         <Routes>
@@ -34,7 +46,7 @@ function App() {
           <Route path="/products/:productId" element={<ProductDetails focusedProduct={focusedProduct} /> }/> 
           <Route path="/products" element={<Products setFocusedProduct={setFocusedProduct} />} />
 
-          <Route path="/login" element={<Login setUser={setUser} />}/>
+          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />}/>
         </Routes>
       </div>
     </Router>

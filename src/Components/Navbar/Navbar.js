@@ -11,9 +11,7 @@ import { baseURL } from '../../config';
 
 
 export default function Navbar (props) {
-    const { user, setUser } = props;
-    console.log(setUser);
-    console.log(typeof setUser);
+    const { loggedIn, setLoggedIn } = props;
 
     function loginLogout (user) {
         if (user) {
@@ -24,9 +22,11 @@ export default function Navbar (props) {
     }
 
     async function logout () {
-        const response = await fetch(`${baseURL}/auth/logout`);
+        const response = await fetch(`${baseURL}/auth/logout`, {
+            credentials: "include",
+        });
         if (response.ok) {
-            setUser(null);
+            setLoggedIn(false);
         }
     }
 
@@ -35,7 +35,7 @@ export default function Navbar (props) {
             <ul id="navbar-group-1">
                 <li className="navbar-items"><NavLink to="/"><img className="nav-icons" src={logo} alt="Salt Tech logo - a text representation of a salt molecule's bond" /></NavLink></li>
                 <li className="navbar-items"><NavLink to="/products">Products</NavLink></li>
-                {loginLogout(user, setUser)}
+                {loginLogout(loggedIn, setLoggedIn)}
                 {/* <li className="navbar-items"><NavLink to="/login">Login / Register</NavLink></li> */}
                 <li className="navbar-items"><NavLink><AiOutlineShoppingCart className="nav-icons"/></NavLink></li>
 
