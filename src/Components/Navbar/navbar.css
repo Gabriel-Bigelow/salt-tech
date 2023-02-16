@@ -3,26 +3,47 @@
     align-content: center;
     position: fixed;
     top: 0;
-    background-color: rgb(50, 60, 71);
     width: 100%;
     height: 4rem;
     z-index: 100;
-    border-bottom: solid 1px rgb(180, 180, 180);
+    background-color: rgba(250, 250, 255, 0.85);
+    backdrop-filter: blur(0.25rem);
+}
+
+#navbar-shadow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    grid-row: 1;
+    grid-column: 1;
+    z-index: 99;
+}
+#navbar-shadow-container:before {
+    content: '';
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    position: absolute;
+    height: 0.25rem;
+    right: 0;
+    bottom: -1rem;
+    left: 0;
 }
 
 #navbar ul li, #navbar a {
     font-weight: 600;
     display: grid;
     align-content: center;
-    color: white;
+    color: rgb(25, 30, 35)
 }
 
 
 #navbar-group-1 {
+    grid-row: 1;
+    grid-column: 1;
     display: flex;
     justify-content: space-around;
     margin: 0;
     padding: 0;
+    z-index: 100;
 }
 
 .navbar-items {
@@ -36,4 +57,9 @@
 .nav-icons {
     height: 2.5rem;
     width: auto;
+}
+
+#account-icons {
+    display: flex;
+    gap: 2rem;
 }

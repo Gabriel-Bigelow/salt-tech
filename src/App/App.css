@@ -51,23 +51,44 @@ a:hover {
   text-decoration: underline;
 }
 
+.color-sea-salt {
+  color: rgb(50, 150, 255);
+}
+
+.bg-color-sea-salt {
+  background-color: rgb(50, 150, 255);
+}
+
 .color-slate {
+  color: rgb(50, 60, 71);
+}
+
+.bg-color-slate {
   background-color: rgb(50, 60, 71);
   color: white;
 }
 
 .color-light-slate {
+  color: rgb(100, 120, 142);
+}
+
+.bg-color-light-slate {
   background-color: rgb(100, 120, 142);
   color: white;
 }
 
-.color-salt-slate {
+.bg-color-salt-slate {
   background-color: rgb(240, 240, 255);
-  color: white;
 }
 
 #app-body { 
   position: absolute;
+  background-color: rgb(245, 245, 255);
   top: 4rem;
   width: 100%;
+}
+
+html {
+  background-color: rgb(245, 245, 255);
+  color: rgb(50, 60, 71);
 }

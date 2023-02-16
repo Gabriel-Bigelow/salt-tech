@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './product.css';
 import textLogo from '../../images/logoNoBG.png'
+import { formatMoney } from '../../util/formatting';
 
 export default function Product (props) {
     const { product, setFocusedProduct } = props;
@@ -32,18 +33,17 @@ export default function Product (props) {
     }
 
     return (
-        <div className="product color-salt-slate">
+        <div className="product bg-color-salt-slate">
             <NavLink to={`/products/${product.id}`} onClick={handleNavigation} >
                 <div className="product-image" onMouseOver={showImageDetailsText} onMouseOut={unblur}>
-                    {/* <img src="https://www.cyberpowerpc.com/images/cs/pc008/cs-450-160_400.png?v2" /> */}
                     <img src={product.image_url ? product.image_url : textLogo}/>
                     <h2>Click For Product Details</h2>
                 </div>
             </NavLink>
 
-            <div className="product-info color-light-slate">
+            <div className="product-info bg-color-light-slate">
                 <NavLink className="product-name" to={`/products/${product.id}`} onClick={handleNavigation} ><p >{product.name}</p></NavLink>
-                <p className="product-price">${product.price}</p>
+                <p className="product-price">{formatMoney(product.price)}</p>
                 <p className="product-stock">{product.stock > 0 ? `${product.stock} Available` : "Out of stock"}</p>
             </div>
         </div>

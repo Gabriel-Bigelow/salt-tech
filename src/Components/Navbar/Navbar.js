@@ -1,7 +1,8 @@
 import './navbar.css';
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import logo from '../../images/textLogoW.png';
+import { NavLink } from "react-router-dom";
+import logo from '../../images/textLogo.jpg';
 import { AiOutlineShoppingCart } from 'react-icons/ai'
+import { VscAccount } from 'react-icons/vsc';
 import { baseURL } from '../../config';
 
 
@@ -15,7 +16,7 @@ export default function Navbar (props) {
 
     function loginLogout (user) {
         if (user) {
-            return <li className="navbar-items"><NavLink to="/" onClick={logout}>Logout</NavLink></li>
+            return <li className="navbar-items" id="logout"><NavLink to="/" onClick={logout}>Logout</NavLink></li>
         } else {
             return <li className="navbar-items"><NavLink to="/login">Login / Register</NavLink></li>
         }
@@ -32,14 +33,20 @@ export default function Navbar (props) {
 
     return (
         <section id="navbar">
+            <div id="navbar-shadow-container"></div>
             <ul id="navbar-group-1">
                 <li className="navbar-items"><NavLink to="/"><img className="nav-icons" src={logo} alt="Salt Tech logo - a text representation of a salt molecule's bond" /></NavLink></li>
                 <li className="navbar-items"><NavLink to="/products">Products</NavLink></li>
-                {loginLogout(loggedIn, setLoggedIn)}
-                {/* <li className="navbar-items"><NavLink to="/login">Login / Register</NavLink></li> */}
-                <li className="navbar-items"><NavLink><AiOutlineShoppingCart className="nav-icons"/></NavLink></li>
-
+                
+                {loggedIn ? 
+                    <div id="account-icons">
+                        <li className="navbar-items"><NavLink to="/cart"><AiOutlineShoppingCart className="nav-icons"/></NavLink></li>
+                        <li className="navbar-items"><NavLink to="/account"><VscAccount className='nav-icons'/></NavLink></li> 
+                        {loginLogout(loggedIn, setLoggedIn)}
+                    </div> : 
+                    loginLogout(loggedIn, setLoggedIn)}
             </ul>
+            
         </section>
     )
 }

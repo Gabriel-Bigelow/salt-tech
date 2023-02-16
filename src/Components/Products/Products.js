@@ -24,9 +24,6 @@ export default function Products (props) {
     }, [])
 
 
-    console.log(products);
-
-
     return (
         <section id="products">
             <h2>Products</h2>

@@ -20,7 +20,7 @@ export default function Login (props) {
 
     async function handleSubmit (event) {
         event.preventDefault();
-        
+
         const response = await fetch(`${baseURL}/auth/login`, {
             'method': 'post',
             headers: {
@@ -44,11 +44,11 @@ export default function Login (props) {
 
     return (
         <section id="login">
-            <form className='color-slate' onSubmit={handleSubmit}>
+            <form className='bg-color-slate' onSubmit={handleSubmit}>
                 <label>Welcome Back</label>
                 <input type="email" id="email" name="email" placeholder="Email address" onChange={handleEmail}></input>
                 <input type="password" id="password" name="password" placeholder="Password" onChange={handlePassword}></input>
-                <input type="submit" value="Sign In" id="login-button" className='color-slate'></input>
+                <input type="submit" value="Sign In" id="login-button" className='bg-color-slate'></input>
             </form>
             <p id="new-user">New user? <NavLink>Register</ NavLink></p>
         </section>
