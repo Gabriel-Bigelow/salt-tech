@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { baseURL } from "../../config";
 import { formatMoney } from "../../util/formatting";
+import { quantityOptions } from "../../util/selectBuilder";
 
 import './productDetails.css';
 
@@ -13,14 +14,6 @@ async function getProductById (productId, setProduct) {
         const jsonResponse = await response.json();
         setProduct(jsonResponse);
     }
-}
-
-function quantityOptions (stock) {
-    const quantities = [];
-    for (let i = 1; i <= stock; i++) {
-        quantities.push(<option key={i} value={`${i}`}>{i}</option>)
-    }
-    return quantities;
 }
 
 function renderProduct (product, addToCart, handleChange, quantity) {
@@ -49,7 +42,7 @@ function renderProduct (product, addToCart, handleChange, quantity) {
                             <p className="color-sea-salt">In Stock</p>
                             <div>
                                 <select>
-                                    {quantityOptions(product.stock)}
+                                    {quantityOptions(product)}
                                 </select>
                                 <button onClick={addToCart}>Add To Cart</button>
                             </div>
@@ -73,6 +66,7 @@ export default function ProductDetails (props) {
     const [product, setProduct] = useState();
     const [quantity, setQuantity] = useState(1);
     const { productId } = useParams();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -97,7 +91,7 @@ export default function ProductDetails (props) {
 
         if (response.ok) {
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
+            navigate('/cart');
         }
     }
 

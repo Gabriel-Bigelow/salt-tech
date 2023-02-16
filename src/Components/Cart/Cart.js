@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { baseURL } from "../../config"
 import { formatMoney } from "../../util/formatting";
+import { quantityOptions } from "../../util/selectBuilder";
 
 import './cart.css';
 
@@ -15,12 +17,41 @@ async function getCartProducts (setCart) {
     }
 }
 
-function renderCartProducts (products) {
+async function updateCart (productId, quantity) {
+    const response = await fetch(`${baseURL}/products/${productId}/addToCart`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: 'post',
+        body: JSON.stringify({
+            quantity: quantity
+        }),
+        credentials: 'include'
+    })
+
+    if (response.ok) return true;
+    return false;
+}
+
+async function removeProductFromCart (productId) {
+    const response = await fetch(`${baseURL}/cart/removeProductFromCart/${productId}`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: 'delete',
+        credentials: 'include'
+    })
+
+    if (response.ok) return true;
+    return false;
+}
+
+function renderCartProducts (products, handleChange, handleClick) {
     return products.map(product => {
         return (
             <div className="cart-product bg-color-light-slate" key={product.id}>
                 <div className="cart-product-column cart-product-image">
-                    <img src={product.image_url}/>
+                    <img src={product.image_url} alt={product.name}/>
                 </div>
                 
                 <div className="cart-product-column p-baseline">
@@ -32,13 +63,14 @@ function renderCartProducts (products) {
                 </div>
 
                 <div className="cart-product-column p-center">
-                    <p>{product.quantity}</p>
+                    <select id={`select-element-for-product-${product.product_id}`} onChange={handleChange}>
+                        {quantityOptions(product) }
+                    </select>
                 </div>
                 <div className="cart-product-column p-center">
                     <p>{formatMoney(product.product_total)}</p>
                 </div>
-                
-                
+                <button id={`remove-product-${product.product_id}`} className="remove-product bg-color-light-slate" onClick={handleClick}>Remove</button>
             </div>
         )
     })
@@ -46,7 +78,48 @@ function renderCartProducts (products) {
 
 export default function Cart () {
     const [cart, setCart] = useState({});
+    const navigate = useNavigate();
 
+    async function handleChange (event) {
+        const productId = parseInt(event.target.id.replace('select-element-for-product-', ''));
+        const quantity = parseInt(event.target.value);
+        setCart({cartProducts: 'Updating cart'});
+
+        if (quantity !== 0) { 
+            const cartUpdated = await updateCart(productId, quantity);
+            if (cartUpdated) {
+                getCartProducts(setCart);
+            }
+        } else {
+            const productRemoved = await removeProductFromCart(productId);
+            if (productRemoved) {
+                getCartProducts(setCart);
+            }
+        }
+    }
+
+    async function handleClick (event) {
+        const productId = event.target.id.replace('remove-product-', '');
+        setCart({cartProducts: 'Updating cart'});
+
+        const productRemoved = await removeProductFromCart(productId);
+        if (productRemoved) {
+            getCartProducts(setCart);
+        }
+    }
+
+    async function handleCheckout () {
+        const response = await fetch(`${baseURL}/cart/checkout`, {
+            method: 'post',
+            credentials: "include",
+        });
+
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            console.log(jsonResponse);
+            navigate('/account/orders');
+        }
+    }
 
     useEffect(() => {
         if (Object.keys(cart).length === 0) {
@@ -54,7 +127,7 @@ export default function Cart () {
         }
     }, [cart]);
 
-    return Object.keys(cart).length > 0 ? (
+    return Object.keys(cart).length === 2 ? (
             <section id="cart">
                 <h1 className="color-bg-color-slate">Shopping Cart ({cart.cartTotal.product_types} Product Types)</h1>
                 <section id="cart-products" className="bg-color-slate">
@@ -62,7 +135,6 @@ export default function Cart () {
                         <div className="cart-product-column cart-product-image ">
                             <p>Preview</p>
                         </div>
-                        
                         <div className="cart-product-column p-baseline">
                             <p>Name</p>
                         </div>
@@ -76,7 +148,7 @@ export default function Cart () {
                             <p>Total</p>
                         </div>
                     </div>
-                    {renderCartProducts(cart.cartProducts)}
+                    {renderCartProducts(cart.cartProducts, handleChange, handleClick)}
                 </section>
 
                 <section id="cart-total" className="bg-color-slate">
@@ -90,8 +162,15 @@ export default function Cart () {
                         <p>{cart.cartTotal.total_items}</p>
                     </div>
                     <div id="checkout-button">
-                        <button className="bg-color-light-slate">Checkout</button>
+                        <button className="bg-color-light-slate" onClick={handleCheckout}>Checkout</button>
                     </div>
                 </section>
-            </section> ) : undefined
+            </section> ) : Object.keys(cart).length === 0 ? (
+                <section id="cart"><h2>Loading Cart</h2></section>
+                ) : (
+                <section id="cart">
+                    <h2>{cart.cartProducts}</h2>
+                </section>
+            )
+            
 }

@@ -16,19 +16,21 @@
     min-width: 60%;
     padding: 0 2rem 2rem 2rem;
     border: rgb(50, 150, 255);
+    flex-grow: 1;
 }
 
 #cart-product-labels {
     display: grid;
-    grid-template: 5rem / minmax(1rem, 5rem) auto 5rem 2rem 5rem;
+    grid-template: 5rem / minmax(1rem, 5rem) auto 4rem 4rem 6rem;
     margin-bottom: 0;
     align-items: center;
     font-weight: 600;
 }
 
 .cart-product {
+    position: relative;
     display: grid;
-    grid-template: 5rem / minmax(1rem, 5rem) auto 5rem 2rem 5rem;
+    grid-template: 5rem / minmax(1rem, 5rem) auto 4rem 4rem 6rem;
     margin-bottom: 0.5rem;
     padding: 1rem 0;
     align-items: center;
@@ -55,6 +57,20 @@
     align-items: center;
     height: 100%;
     margin: 0;
+}
+
+.remove-product {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.35rem;
+    border: 1px solid orange;
+}
+
+.remove-product:hover {
+    background-color: rgb(75, 90, 105);
+    cursor: pointer;
 }
 
 .p-center {

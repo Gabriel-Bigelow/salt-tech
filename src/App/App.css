@@ -92,3 +92,9 @@ html {
   background-color: rgb(245, 245, 255);
   color: rgb(50, 60, 71);
 }
+
+@media only screen and (max-width: 450px) {
+  html {
+    font-size: 10px;
+  }
+}

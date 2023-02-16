@@ -12,7 +12,7 @@ import { baseURL } from '../config';
 import Navbar from '../Components/Navbar/Navbar';
 import Home from '../Components/Home/Home';
 import Products from '../Components/Products/Products';
-import ProductDetails from '../Components/Products/ProductDetails';
+import ProductDetails from '../Components/ProductDetails/ProductDetails';
 import Login from '../Components/Login/Login';
 import Cart from '../Components/Cart/Cart.js'
 

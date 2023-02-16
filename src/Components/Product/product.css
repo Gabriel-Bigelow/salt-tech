@@ -1,8 +1,11 @@
 .product {
     display: flex;
     flex-wrap: wrap;
-    width: 25%;
+    /* width: 25%; */
+    flex-basis: 25%;
+    flex-grow: 0.10;
     max-width: 20rem;
+    min-width: 10rem;
     grid-template: 65fr 30fr/ 1fr;
     transition-duration: 0.3s;
 }

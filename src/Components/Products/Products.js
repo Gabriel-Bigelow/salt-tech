@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { baseURL } from "../../config";
-import Product from "./Product";
+import Product from "../Product/Product";
 
 import './products.css';
 
