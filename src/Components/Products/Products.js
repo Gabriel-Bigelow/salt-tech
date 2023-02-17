@@ -29,7 +29,7 @@ export default function Products (props) {
             <h2>Products</h2>
             <div className="products-list">
                 {products ? products.map(product => {
-                    return <Product key={product.id} product={product} setFocusedProduct={setFocusedProduct} />             
+                    return <Product key={`product-${product.id}`} product={product} setFocusedProduct={setFocusedProduct} />             
                 }) : null}
             </div>
         </section>

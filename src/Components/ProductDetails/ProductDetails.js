@@ -41,7 +41,7 @@ function renderProduct (product, addToCart, handleChange, quantity) {
                         <section id="pd-actions" onChange={handleChange}>
                             <p className="color-sea-salt">In Stock</p>
                             <div>
-                                <select>
+                                <select defaultValue={1}>
                                     {quantityOptions(product)}
                                 </select>
                                 <button onClick={addToCart}>Add To Cart</button>

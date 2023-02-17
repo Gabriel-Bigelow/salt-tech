@@ -1,0 +1,81 @@
+#account {
+    display: flex;
+    margin-top: 5%;
+    padding: 2rem 5%;
+    background-color:white;
+}
+
+
+#account ul {
+    list-style: none;
+    padding: 0;
+}
+
+#account ul h3 {
+    display: inline-block;
+}
+
+.account-information-block {
+    padding-left: 2rem;
+}
+
+.title-and-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-and-button-container button {
+    border-radius: 0.2rem;
+    padding: 0.2rem 0.75rem;
+    height: 2rem;
+}
+
+.title-and-button-container button:hover {
+    cursor: pointer;
+}
+
+#user-address {
+    margin: 2rem 0;
+}
+
+
+.edit-form-container {
+    display: grid;
+    position: absolute;
+    padding: 5% 0 15rem;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.edit-form-container div {
+    display: grid;
+    padding: 5rem;
+}
+.edit-form-container h2 {
+    text-align: center;
+}
+.edit-form-container form input {
+    min-width: 15rem;
+}
+.edit-account-form label, .edit-account-form input {
+    display: block;
+}
+#edit-address-submit {
+    margin: 2rem auto 0;
+    padding: 0.5rem;
+    min-width: 0;
+    border: 1px solid rgb(50, 150, 255);
+    border-radius: 0.2rem;
+}
+
+#edit-address-submit:hover {
+    cursor: pointer;
+    background-color: rgb(100, 120, 142);
+}

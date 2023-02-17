@@ -49,7 +49,7 @@ async function removeProductFromCart (productId) {
 function renderCartProducts (products, handleChange, handleClick) {
     return products.map(product => {
         return (
-            <div className="cart-product bg-color-light-slate" key={product.id}>
+            <div className="cart-product bg-color-light-slate" key={`cart-product-${product.id}`}>
                 <div className="cart-product-column cart-product-image">
                     <img src={product.image_url} alt={product.name}/>
                 </div>
@@ -63,7 +63,7 @@ function renderCartProducts (products, handleChange, handleClick) {
                 </div>
 
                 <div className="cart-product-column p-center">
-                    <select id={`select-element-for-product-${product.product_id}`} onChange={handleChange}>
+                    <select id={`select-element-for-product-${product.product_id}`} onChange={handleChange} defaultValue={product.quantity}>
                         {quantityOptions(product) }
                     </select>
                 </div>

@@ -12,7 +12,7 @@ import { baseURL } from '../../config';
 
 
 export default function Navbar (props) {
-    const { loggedIn, setLoggedIn } = props;
+    const { user, setUser } = props;
 
     function loginLogout (user) {
         if (user) {
@@ -27,7 +27,7 @@ export default function Navbar (props) {
             credentials: "include",
         });
         if (response.ok) {
-            setLoggedIn(false);
+            setUser(false);
         }
     }
 
@@ -38,13 +38,13 @@ export default function Navbar (props) {
                 <li className="navbar-items"><NavLink to="/"><img className="nav-icons" src={logo} alt="Salt Tech logo - a text representation of a salt molecule's bond" /></NavLink></li>
                 <li className="navbar-items"><NavLink to="/products">Products</NavLink></li>
                 
-                {loggedIn ? 
+                {user ? 
                     <div id="account-icons">
                         <li className="navbar-items"><NavLink to="/cart"><AiOutlineShoppingCart className="nav-icons"/></NavLink></li>
                         <li className="navbar-items"><NavLink to="/account"><VscAccount className='nav-icons'/></NavLink></li> 
-                        {loginLogout(loggedIn, setLoggedIn)}
+                        {loginLogout(user, setUser)}
                     </div> : 
-                    loginLogout(loggedIn, setLoggedIn)}
+                    loginLogout(user, setUser)}
             </ul>
             
         </section>

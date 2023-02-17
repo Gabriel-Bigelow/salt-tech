@@ -1,0 +1,18 @@
+#nav-list ul {
+    display: flex;
+    list-style: none;
+    gap: 0.75rem;
+}
+
+#nav-list li {
+    display: inline-block;
+    font-size: 1.1rem;
+}
+
+#nav-list li:hover {
+    color:rgb(50, 150, 255);
+}
+
+#nav-list #current-subdirectory {
+    font-weight: 600;
+}

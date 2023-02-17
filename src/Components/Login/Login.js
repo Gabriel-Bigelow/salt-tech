@@ -4,7 +4,7 @@ import { baseURL } from '../../config';
 import './login.css';
 
 export default function Login (props) {
-    const { setLoggedIn } = props;
+    const { setUser } = props;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
@@ -34,7 +34,8 @@ export default function Login (props) {
         })
 
         if (response.ok) {
-            setLoggedIn(true);
+            const jsonResponse = await response.json();
+            setUser(jsonResponse);
             navigate('/');
         } else {
             console.log('Unauthorized');

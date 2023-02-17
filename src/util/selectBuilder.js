@@ -1,5 +1,5 @@
 export function quantityOptions (product) {
-    const { stock, quantity } = product;
+    const { stock } = product;
     const quantities = [];
 
     let incrementor = 1;
@@ -13,13 +13,7 @@ export function quantityOptions (product) {
     };
 
     for (i; i <= stock; i += incrementor) {
-        if (quantity && quantity === i) {
-            quantities.push(<option key={i} value={`${i}`} selected>{i}</option>);
-        } else if (!quantity && i === 1){
-            quantities.push(<option key={i} value={`${i}`} selected>{i}</option>);
-        } else {
-            quantities.push(<option key={i} value={`${i}`}>{i}</option>);
-        }
+        quantities.push(<option key={i} value={`${i}`}>{i}</option>);
     }
     return quantities;
 }

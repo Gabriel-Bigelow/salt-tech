@@ -3,56 +3,66 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  NavLink,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { baseURL } from '../config';
 
-import Navbar from '../Components/Navbar/Navbar';
+import Account from '../Components/Account/Account';
+import Cart from '../Components/Cart/Cart.js'
 import Home from '../Components/Home/Home';
+import Navbar from '../Components/Navbar/Navbar';
+import Navlist from '../Components/Navlist/Navlist';
+import Login from '../Components/Login/Login';
 import Products from '../Components/Products/Products';
 import ProductDetails from '../Components/ProductDetails/ProductDetails';
-import Login from '../Components/Login/Login';
-import Cart from '../Components/Cart/Cart.js'
 
-async function checkForLoggedIn (loggedIn, setLoggedIn) {
-  if (!loggedIn) {
+async function checkForUser (user, setUser) {
+  if (!user) {
     const response = await fetch(`${baseURL}/users/me`, {
       credentials: 'include'
     });
     
     if (response.ok) {
-      setLoggedIn(true);
+      setUser(true);
     }
   }
 }
 
+function changeLastSubdirectory (subs, newEndpoint, setNavLoc) {
+  console.log(subs);
+  const newSubs = subs[subs.length-1] = newEndpoint;
+
+  setNavLoc(newSubs);
+}
+
 function App() {
-  const [loggedIn, setLoggedIn] = useState();
+  const [user, setUser] = useState();
   const [focusedProduct, setFocusedProduct] = useState();
 
   useEffect(() => {
-    // checkForLoggedIn(loggedIn, setLoggedIn);
+    // checkForUser(user, setUser);
     // uncomment this later. Commented out to reduce fetch requests to Database
     // Supabase free account is limited to certain number of requests.
-  }, [loggedIn]);
+  }, [user]);
 
   return (
     <Router>
-      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Navbar user={user} setUser={setUser} />
+      
       
       <div id="app-body" className='bg-color-salt-slate'>
+        <Navlist focusedProduct={focusedProduct} />
         <Routes>
           <Route path="/" element={<Home/>} />
 
-          <Route path="/account" />
+          <Route path="/account" element={<Account user={user} />}/>
           <Route path="/cart" element={<Cart />}/>
 
           <Route path="/products/:productId" element={<ProductDetails focusedProduct={focusedProduct} /> }/> 
           <Route path="/products" element={<Products setFocusedProduct={setFocusedProduct} />} />
 
-          <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />}/>
+          <Route path="/login" element={<Login setUser={setUser} />}/>
         </Routes>
       </div>
     </Router>
