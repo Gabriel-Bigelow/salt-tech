@@ -1,97 +1,85 @@
-import { baseURL } from '../../config';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './account.css';
-
-async function handleAddressSubmit (event) {
-    event.preventDefault();
-
-    const values = {}
-
-    values.address = document.getElementById('street-address-input').value;
-    values.city = document.getElementById('city-input').value;
-    values.state = document.getElementById('state-input').value;
-    values.zip = document.getElementById('zip-input').value;
-    values.country = document.getElementById('country-input').value;
-    
-    const jsonString = JSON.stringify(values);
-    console.log(jsonString);
-
-    const response = await fetch(`${baseURL}/users/updateUser`, {
-        method: "put",
-        body: jsonString,
-        credentials:'include'
-    })
-
-    if (response.ok) {
-        const jsonResponse = await response.json();
-        console.log(jsonResponse);
-    }
-}
-
-function renderEditAddress () {
-    return (
-        <div className='edit-form-container'>
-            <div className='bg-color-slate'>
-                <h2>Edit Address</h2>
-                <form className="edit-account-form" onSubmit={handleAddressSubmit}>
-                    <label>Street Address</label>
-                    <input type="text" id="street-address-input" placeholder='ex: 123 Apple Street' />
-                    <label>City</label>
-                    <input type="text" id="city-input" placeholder='ex: Los Angeles'/>
-                    <label>State</label>
-                    <input type="text" id="state-input" placeholder='ex: CA' maxLength={2}/>
-                    <label>Zip/Postal Code</label>
-                    <input type="text" id="zip-input" placeholder='ex: 90210' maxLength={5}/>
-                    <label>Country Code</label>
-                    <input type="text" id="country-input" placeholder='ex: USA' maxLength={3}/>
-                    <input type="submit" id='edit-address-submit' className='bg-color-slate' />
-                </form>
-            </div>
-        </div>
-    )
-}
+import { editAddress } from './forms/editAddress';
+import { editEmail } from './forms/editEmail';
 
 export default function Account (props) {
-    const { user } = props;
-    const smallAddress = [];
-    const bigAddress = [];
-    if (user.address && user.city && user.state && user.zip && user.country) {
-        smallAddress.push(user.address);
-        bigAddress.push(user.city);
-        bigAddress.push(user.state);
-        bigAddress.push(user.zip);
-        bigAddress.push(user.country);
-    } else {
-        bigAddress.push('Address is incomplete');
+    const navigate = useNavigate();
+    const { user, setUser } = props;
+    const [edit, setEdit] = useState();
+
+    function setEditForm (event) {
+        setEdit(event.target.id.slice(5, event.target.id.length - 7));
     }
 
+    function renderEditForm () {
+        console.log(edit);
+        if (edit === 'address') return editAddress(setEdit, setUser, user);
+        if (edit === 'email') return editEmail(setEdit, setUser, user);
+    }
+
+    function handleCartNavigate () {
+        navigate('/cart');
+    }
+
+    function handleOrdersNavigate () {
+        navigate('/account/orders')
+    }
+    
+    const address = [];
+    if (user && (user.address && user.city && user.state && user.zip && user.country)) {
+        address.push(`${user.address},`);
+        address.push(`${user.city},`);
+        address.push(`${user.state}`);
+        address.push(`${user.zip},`);
+        address.push(`${user.country}`);
+    } else {
+        address.push('Address is incomplete. Please provide:');
+        const missingItems = [];
+        if (!user?.address) missingItems.push('street address');
+        if (!user?.city) missingItems.push('city');
+        if (!user?.state) missingItems.push('state');
+        if (!user?.zip) missingItems.push('zip code');
+        if (!user?.country) missingItems.push('country code');
+        if (missingItems.length > 1) missingItems.splice(missingItems.length-1, 1, `and ${missingItems[missingItems.length-1]}`)
+        missingItems[missingItems.length-1] = missingItems[missingItems.length-1].concat('.');
+        address.push(missingItems.join(', '));
+    }
+
+    useEffect(() => {
+        if (!user) return navigate('/login');
+        console.log(user);
+    }, [user])
+    
     return (
         <section id="account">
             <div id="account-information">
                 <h2>Account Information</h2>
 
                 <div id="user-email" className='account-information-block'>
-                    <ul>
-                        <div className='title-and-button-container'>
-                            <h3>Email Address</h3>
-                            <button className='bg-color-slate'>Edit</button>
-                        </div>
-                        <li>{user.email}</li>
-                    </ul>
+                    <div className='title-and-button-container'>
+                        <h3>Email Address</h3>
+                        <button id="edit-email-button" className='bg-color-slate' onClick={setEditForm}>Edit</button>
+                    </div>
+                    <p>{user?.email}</p>
                 </div>
 
                 <div id="user-address" className='account-information-block'>
-                    <ul>
                         <div className='title-and-button-container'>
                             <h3>Address</h3>
-                            <button className='bg-color-slate'>Edit</button>
+                            <button id="edit-address-button" className='bg-color-slate' onClick={setEditForm}>Edit</button>
                         </div>
-                        <li>{user.address && bigAddress.length > 1 ? `${smallAddress[0]},` : 'Address is incomplete'}</li>
-                        {bigAddress.length > 1 ? <li>bigAddress.join(', ')</li> : undefined}
-                    </ul>
+                        <p>{address.join(' ')}</p>
                 </div>
-                {renderEditAddress()}
-
                 
+                {renderEditForm()}
+            </div>
+
+            <div id="account-navigation">
+                <h2>Cart and Orders</h2>
+                <button onClick={handleCartNavigate}>Cart</button>
+                <button onClick={handleOrdersNavigate}>Order History</button>
             </div>
         </section>
     )

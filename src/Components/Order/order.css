@@ -1,0 +1,91 @@
+.order {
+    margin: 2rem;
+}
+
+.order-label {
+    color: rgb(205, 235, 255);
+    margin: 0;
+}
+
+
+.order-overview {
+    height: 3rem;
+    flex-grow: 1;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 1px solid rgb(50, 150, 255);
+    padding: 0.2rem 1rem 0rem;
+}
+
+.order-overview p {
+    display: inline-block;
+    border-top: pink;
+    margin: 0;
+}
+
+.order-overview-details {
+    display: flex;
+    gap: 3rem;
+    height: 3rem;
+}
+
+.order-overview-column {
+    display: grid;
+}
+
+.order-number-and-actions .order-overview-column {
+    justify-items: end;
+}
+
+.order-number-and-actions a {
+    color: rgb(100, 200, 255);
+}
+.order-number-and-actions a:hover {
+    color: rgb(50, 150, 255);
+}
+
+
+
+
+
+
+
+.order-product-labels {
+    display: grid;
+    grid-template: 4rem / 5rem auto 5rem 5rem 5rem;
+    padding: 0rem 2rem;
+    align-items: center;
+    gap: 2rem;
+}
+
+.order-products {
+    display: grid;
+    grid-template: minmax(4rem, 6rem) / 5rem auto 5rem 5rem 5rem;
+    padding: 1rem 2rem;
+    align-items: center;
+    gap: 2rem;
+}
+
+.order-product-column {
+    justify-items: center;
+}
+
+.order-product-column p {
+    overflow: hidden;
+}
+
+.order-product-image {
+    display: grid;
+    max-width: 4rem;
+    max-height: 4rem;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+.order-product-column img {
+    max-width: 4rem;
+    max-height: 4rem;
+}

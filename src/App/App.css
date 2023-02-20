@@ -40,6 +40,11 @@
   font-weight: bold;
 }
 
+html {
+  background-color: rgb(245, 245, 255);
+  color: rgb(50, 60, 71);
+}
+
 body {
   font-family: "Nunito Sans";
 }
@@ -49,6 +54,21 @@ a {
 }
 a:hover { 
   text-decoration: underline;
+}
+
+button {
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.75rem;
+  height: 2rem;
+  font-size: 0.9rem;
+  border: none;
+  background-color: rgb(50, 60, 71);
+  color:white;
+}
+
+button:hover {
+  background-color: rgb(75, 90, 105);
+  cursor: pointer;
 }
 
 .color-sea-salt {
@@ -88,10 +108,7 @@ a:hover {
   width: 100%;
 }
 
-html {
-  background-color: rgb(245, 245, 255);
-  color: rgb(50, 60, 71);
-}
+
 
 @media only screen and (max-width: 450px) {
   html {

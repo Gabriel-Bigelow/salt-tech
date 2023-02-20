@@ -49,7 +49,7 @@ async function removeProductFromCart (productId) {
 function renderCartProducts (products, handleChange, handleClick) {
     return products.map(product => {
         return (
-            <div className="cart-product bg-color-light-slate" key={`cart-product-${product.id}`}>
+            <div className="cart-product bg-color-light-slate" key={`cart-product-${product.product_id}`}>
                 <div className="cart-product-column cart-product-image">
                     <img src={product.image_url} alt={product.name}/>
                 </div>
@@ -76,9 +76,11 @@ function renderCartProducts (products, handleChange, handleClick) {
     })
 }
 
-export default function Cart () {
+export default function Cart (props) {
+    const { user } = props;
     const [cart, setCart] = useState({});
     const navigate = useNavigate();
+    console.log(cart);
 
     async function handleChange (event) {
         const productId = parseInt(event.target.id.replace('select-element-for-product-', ''));
@@ -122,6 +124,7 @@ export default function Cart () {
     }
 
     useEffect(() => {
+        if (!user) return navigate('/login');
         if (Object.keys(cart).length === 0) {
             getCartProducts(setCart);
         }

@@ -1,0 +1,18 @@
+#orders {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#orders h2 {
+    width: 100%;
+    text-align: center;
+}
+
+#orders-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    justify-content: center;
+}
+

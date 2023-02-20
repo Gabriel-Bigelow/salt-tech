@@ -91,6 +91,7 @@ export default function ProductDetails (props) {
 
         if (response.ok) {
             const jsonResponse = await response.json();
+            console.log(jsonResponse);
             navigate('/cart');
         }
     }

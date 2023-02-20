@@ -1,10 +1,14 @@
 #account {
     display: flex;
-    margin-top: 5%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 3rem;
     padding: 2rem 5%;
     background-color:white;
+    border-top: 1px solid rgb(50, 61, 79);
+    border-bottom: 1px solid rgb(50, 61, 79);
+    gap: 5rem;
 }
-
 
 #account ul {
     list-style: none;
@@ -15,28 +19,28 @@
     display: inline-block;
 }
 
+#account-information {
+    max-width: 50%;
+    min-width: 15rem;
+}
+
 .account-information-block {
-    padding-left: 2rem;
+    margin: 2rem;
 }
 
 .title-and-button-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .title-and-button-container button {
-    border-radius: 0.2rem;
-    padding: 0.2rem 0.75rem;
-    height: 2rem;
+
 }
 
 .title-and-button-container button:hover {
     cursor: pointer;
-}
-
-#user-address {
-    margin: 2rem 0;
 }
 
 
@@ -55,14 +59,23 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 .edit-form-container div {
+    position: relative;
     display: grid;
     padding: 5rem;
 }
+.edit-form-container button {
+    position: absolute;
+    right: 0;
+    border: 1px solid rgb(50, 150, 255);
+    border-radius: 0;
+}
+
 .edit-form-container h2 {
     text-align: center;
 }
 .edit-form-container form input {
     min-width: 15rem;
+    margin-bottom: 1rem;
 }
 .edit-account-form label, .edit-account-form input {
     display: block;
@@ -78,4 +91,10 @@
 #edit-address-submit:hover {
     cursor: pointer;
     background-color: rgb(100, 120, 142);
+}
+
+#account-navigation {
+    display: grid;
+    align-content: baseline;
+    gap: 2rem;
 }

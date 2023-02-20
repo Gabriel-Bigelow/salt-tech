@@ -15,7 +15,6 @@
     display: grid;
     min-width: 60%;
     padding: 0 2rem 2rem 2rem;
-    border: rgb(50, 150, 255);
     flex-grow: 1;
 }
 
@@ -63,7 +62,8 @@
     font-size: 0.75rem;
     position: absolute;
     bottom: 0.5rem;
-    right: 0.5rem;
+    right: 8rem;
+    transform: translate(50%, 0);
     padding: 0.25rem 0.35rem;
     border: 1px solid orange;
 }
@@ -123,7 +123,6 @@
 #checkout-button button {
     font-size: 1;
     width: 10rem;
-    padding: 0.5rem;
     border-radius: 0.25rem;
     border: none;
     background-color: rgb(60, 75, 85);
