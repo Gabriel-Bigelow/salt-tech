@@ -14,7 +14,6 @@ export default function Account (props) {
     }
 
     function renderEditForm () {
-        console.log(edit);
         if (edit === 'address') return editAddress(setEdit, setUser, user);
         if (edit === 'email') return editEmail(setEdit, setUser, user);
     }
@@ -49,8 +48,7 @@ export default function Account (props) {
 
     useEffect(() => {
         if (!user) return navigate('/login');
-        console.log(user);
-    }, [user])
+    }, [user, navigate])
     
     return (
         <section id="account">

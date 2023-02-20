@@ -17,6 +17,7 @@ import Navlist from '../Components/Navlist/Navlist';
 import Orders from '../Components/Orders/Orders';
 import Products from '../Components/Products/Products';
 import ProductDetails from '../Components/ProductDetails/ProductDetails';
+import Register from '../Components/Register/Register';
 
 async function checkForUser (user, setUser) {
   if (!user) {
@@ -52,9 +53,9 @@ function App() {
           <Route path="/account/orders" element={<Orders user={user} />} />
           <Route path="/cart" element={<Cart user={user} />}/>
           <Route path="/login" element={<Login setUser={setUser} />}/>
-          <Route path="/products/:productId" element={<ProductDetails focusedProduct={focusedProduct} /> }/> 
+          <Route path="/products/:productId" element={<ProductDetails focusedProduct={focusedProduct} setFocusedProduct={setFocusedProduct} /> }/> 
           <Route path="/products" element={<Products setFocusedProduct={setFocusedProduct} />} />
-
+          <Route path="/register" element={<Register setUser={setUser} />} />
           
         </Routes>
       </div>

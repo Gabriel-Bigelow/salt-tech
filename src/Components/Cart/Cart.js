@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { baseURL } from "../../config"
 import { formatMoney } from "../../util/formatting";
 import { quantityOptions } from "../../util/selectBuilder";
@@ -55,7 +55,7 @@ function renderCartProducts (products, handleChange, handleClick) {
                 </div>
                 
                 <div className="cart-product-column p-baseline">
-                    <p>{product.name}</p>
+                    <NavLink to={`/products/${product.product_id}`}><p>{product.name}</p></NavLink>
                 </div>
 
                 <div className="cart-product-column p-center">
@@ -80,7 +80,6 @@ export default function Cart (props) {
     const { user } = props;
     const [cart, setCart] = useState({});
     const navigate = useNavigate();
-    console.log(cart);
 
     async function handleChange (event) {
         const productId = parseInt(event.target.id.replace('select-element-for-product-', ''));
@@ -117,8 +116,6 @@ export default function Cart (props) {
         });
 
         if (response.ok) {
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
             navigate('/account/orders');
         }
     }
@@ -128,7 +125,7 @@ export default function Cart (props) {
         if (Object.keys(cart).length === 0) {
             getCartProducts(setCart);
         }
-    }, [cart]);
+    }, [cart, user, navigate]);
 
     return Object.keys(cart).length === 2 ? (
             <section id="cart">

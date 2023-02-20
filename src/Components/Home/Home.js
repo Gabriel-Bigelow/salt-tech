@@ -1,5 +1,5 @@
 import './home.css';
-import textLogo from '../../images/logoWonB.png'
+import textLogo from '../../images/logoWonB.webp'
 
 export default function Home () {
 

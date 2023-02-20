@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { baseURL } from '../../config';
-import './login.css';
+import './register.css';
 
-export default function Login (props) {
+export default function Register (props) {
     const { setUser } = props;
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -21,7 +21,7 @@ export default function Login (props) {
     async function handleSubmit (event) {
         event.preventDefault();
 
-        const response = await fetch(`${baseURL}/auth/login`, {
+        const response = await fetch(`${baseURL}/auth/register`, {
             'method': 'post',
             headers: {
                 "Content-Type": "application/json",
@@ -37,21 +37,18 @@ export default function Login (props) {
             const jsonResponse = await response.json();
             setUser(jsonResponse);
             navigate('/');
-        } else {
-            console.log('Unauthorized');
         }
     }
 
 
     return (
-        <section id="login">
+        <section id="register">
             <form className='bg-color-slate' onSubmit={handleSubmit}>
-                <label>Welcome Back</label>
+                <label>Register New User</label>
                 <input type="email" id="email" name="email" placeholder="Email address" onChange={handleEmail}></input>
                 <input type="password" id="password" name="password" placeholder="Password" onChange={handlePassword}></input>
-                <input type="submit" value="Sign In" id="login-button" className='bg-color-slate'></input>
+                <input type="submit" value="Register" id="register-button" className='bg-color-slate'></input>
             </form>
-            <p id="new-user">New user? <NavLink to="/register">Register</ NavLink></p>
         </section>
     )
 }

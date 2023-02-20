@@ -7,12 +7,13 @@ import { quantityOptions } from "../../util/selectBuilder";
 import './productDetails.css';
 
 
-async function getProductById (productId, setProduct) {
+async function getProductById (productId, setProduct, setFocusedProduct) {
     const response = await fetch(`${baseURL}/products/${productId}`);
 
     if (response.ok) {
         const jsonResponse = await response.json();
         setProduct(jsonResponse);
+        setFocusedProduct(jsonResponse);
     }
 }
 
@@ -21,7 +22,7 @@ function renderProduct (product, addToCart, handleChange, quantity) {
         return (
             <section id="pd-product">
                 <div id="pd-image">
-                    <img src={product.image_url} />
+                    <img src={product.image_url} alt={product.name} />
                 </div>
                 
                 <section id="pd-text-short">
@@ -62,7 +63,7 @@ function renderProduct (product, addToCart, handleChange, quantity) {
 
 
 export default function ProductDetails (props) {
-    let { focusedProduct } = props;
+    let { focusedProduct, setFocusedProduct } = props;
     const [product, setProduct] = useState();
     const [quantity, setQuantity] = useState(1);
     const { productId } = useParams();
@@ -71,11 +72,11 @@ export default function ProductDetails (props) {
 
     useEffect(() => {
         if (!focusedProduct) {
-            getProductById(productId, setProduct);
+            getProductById(productId, setProduct, setFocusedProduct);
         } else {
             setProduct(focusedProduct);
         }
-    }, [focusedProduct, productId]);
+    }, [focusedProduct, productId, setFocusedProduct]);
 
     async function addToCart () {
         const response = await fetch(`${baseURL}/products/${product.id}/addToCart`, {
@@ -90,8 +91,6 @@ export default function ProductDetails (props) {
         })
 
         if (response.ok) {
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
             navigate('/cart');
         }
     }

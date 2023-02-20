@@ -6,6 +6,15 @@
     gap: 2rem;
 }
 
+#cart a {
+    color: white;
+}
+#cart a:hover {
+    cursor: pointer;
+    color: rgb(100, 200, 255);
+}
+
+
 #cart h1 {
     width: 100%;
     text-align: center;

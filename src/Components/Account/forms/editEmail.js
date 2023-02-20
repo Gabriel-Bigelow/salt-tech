@@ -30,7 +30,6 @@ export function editEmail (setEdit, setUser, user) {
             
                 if (response.ok) {
                     const jsonResponse = await response.json();
-                    console.log(jsonResponse);
                     setUser(jsonResponse);
                     setEdit(false);
                 }

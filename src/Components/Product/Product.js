@@ -36,7 +36,7 @@ export default function Product (props) {
         <div className="product bg-color-salt-slate">
             <NavLink to={`/products/${product.id}`} onClick={handleNavigation} >
                 <div className="product-image" onMouseOver={showImageDetailsText} onMouseOut={unblur}>
-                    <img src={product.image_url ? product.image_url : textLogo}/>
+                    <img src={product.image_url ? product.image_url : textLogo} alt={product.name}/>
                     <h2>Click For Product Details</h2>
                 </div>
             </NavLink>

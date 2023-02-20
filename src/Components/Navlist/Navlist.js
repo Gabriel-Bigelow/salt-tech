@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './navlist.css';
 
@@ -23,10 +22,14 @@ function renderNavLoc (navLoc, focusedProduct) {
             formattedSub = sub[0].toUpperCase().concat(sub.substring(1));
         }
 
-        if (sub === 'products') inProductsDirectory = true;
-        
-        return sub !== '>' ? <NavLink key={nameKey(sub)} className={sub === navLoc[navLoc.length-1] ? 'color-light-slate' : 'color-slate'} to={sub === 'Home' ? '/': `/${sub}`}><li  id={sub === navLoc[navLoc.length-1] ? 'current-subdirectory' : undefined}>{formattedSub}</li></NavLink>
-            : <li key={nameKey(sub)} id={sub === navLoc[navLoc.length-1] ? 'current-subdirectory' : undefined}>{formattedSub}</li>
+        if (sub !== ">" && !inProductsDirectory) {
+            if (sub === 'products') inProductsDirectory = true;
+            return <NavLink key={nameKey(sub)} className={sub === navLoc[navLoc.length-1] ? 'color-light-slate' : 'color-slate'} to={sub === 'Home' ? '/': `/${sub}`}><li  id={sub === navLoc[navLoc.length-1] ? 'current-subdirectory' : undefined}>{formattedSub}</li></NavLink>
+        } else if (sub !== ">" && inProductsDirectory) {
+            return <li key={nameKey(sub)} className={sub === navLoc[navLoc.length-1] ? 'color-light-slate' : 'color-slate'} id={sub === navLoc[navLoc.length-1] ? 'current-subdirectory' : undefined}>{formattedSub}</li>
+        } else {
+            return <li key={nameKey(sub)} id={sub === navLoc[navLoc.length-1] ? 'current-subdirectory' : undefined}>{formattedSub}</li>
+        }        
     });
 
     return elements;

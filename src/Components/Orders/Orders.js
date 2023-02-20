@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { baseURL } from '../../config';
-import { formatMoney } from '../../util/formatting';
 import './orders.css'
 
 import Order from '../Order/Order';
@@ -21,8 +19,6 @@ async function getOrders (setOrders) {
 
 export default function Orders () {
     const [orders, setOrders] = useState();
-    
-    console.log(orders);
 
     useEffect(() => {
         getOrders(setOrders)
@@ -32,7 +28,7 @@ export default function Orders () {
         <section id="orders">
             <h2>Orders</h2>
             <div id="orders-list" className='bg-color-slate'>
-                {orders ? orders.map(order => <Order order={order} key={order.id}/>) : undefined}
+                {orders ? orders.map(order => <Order order={order} key={order.id}/>) : <p id="no-orders">No orders have been created yet.</p>}
             </div>
         </section>
     )

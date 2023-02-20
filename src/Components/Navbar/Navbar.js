@@ -1,6 +1,6 @@
 import './navbar.css';
 import { NavLink } from "react-router-dom";
-import logo from '../../images/textLogo.jpg';
+import logo from '../../images/textLogo.webp';
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { VscAccount } from 'react-icons/vsc';
 import { baseURL } from '../../config';

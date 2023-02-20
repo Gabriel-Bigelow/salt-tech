@@ -9,7 +9,7 @@
     font-size: 1.1rem;
 }
 
-#nav-list li:hover {
+#nav-list a:hover {
     color:rgb(50, 150, 255);
 }
 
