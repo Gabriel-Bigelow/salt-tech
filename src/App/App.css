@@ -45,6 +45,18 @@ html {
   color: rgb(50, 60, 71);
 }
 
+body::-webkit-scrollbar{
+  width: 1rem;
+}
+body::-webkit-scrollbar-track {
+  background:rgb(50, 60, 71);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(100, 120, 142);
+  border:1px solid rgb(50, 150, 255);
+  border-radius: 2px
+}
+
 body {
   font-family: "Nunito Sans";
 }
