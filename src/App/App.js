@@ -25,11 +25,9 @@ async function checkForUser (user, setUser) {
       credentials: 'include'
     });
 
-    console.log(response);
     if (response.ok) {
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
-      setUser(true);
+      setUser(jsonResponse);
     }
   }
 }
