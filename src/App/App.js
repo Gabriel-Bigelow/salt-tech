@@ -24,8 +24,11 @@ async function checkForUser (user, setUser) {
     const response = await fetch(`${baseURL}/users/me`, {
       credentials: 'include'
     });
-    
+
+    console.log(response);
     if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
       setUser(true);
     }
   }
