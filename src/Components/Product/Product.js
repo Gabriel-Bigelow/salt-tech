@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './product.css';
-import textLogo from '../../images/logoNoBG.png'
+import textLogo from '../../images/logoNoBG.webp'
 import { formatMoney } from '../../util/formatting';
 
 export default function Product (props) {
