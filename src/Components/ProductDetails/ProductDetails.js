@@ -31,8 +31,8 @@ function renderProduct (product, addToCart, handleChange, quantity) {
                         <h2 className="color-slate">{product ? formatMoney(product.price) : null}</h2>
                     </div>
                     <p>Description about the product will go here
-                        and describe the product and may be entice the user
-                        to buy the product. If it is longer, than the description should
+                        and describe the product and maybe entice the user
+                        to buy the product. If it is longer, then the description should
                         go in the description log section. Just to make sure that we have
                         a long enough example description, I will keep typing until I 
                         believe we have reached a length that will suffice.
