@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Salt Tech Front End
+
+This readme will serve as a comprehensive readme for both the front-end and back-end aspects of this project.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+To see a live deploy of this project, visit [Salt Tech](https://salttech.netlify.app/).
 
-In the project directory, you can run:
+To see my repository for the back end, visit [e-commerce-app](https://github.com/Gabriel-Bigelow/e-commerce-app)
 
-### `npm start`
+## Purpose
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This was my final project for my coding courses! 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Concepts tested:
 
-### `npm test`
+- Planning and creating a RESTful API
+- Implementing a server with Node.js
+- Implementing routing with Express.js
+- Creating and managing interactions with a PostgreSQL database
+- User authentication with Passport.js
+- Deployment of a full stack application
+- Continuous integration and continuous deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technology
 
-### `npm run build`
+- Semantic HTML5
+- CSS3
+- Javascript (ES6)
+- React.js
+- Express.js
+- Node.js
+- PostgreSQL
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Hosting & CI/CD
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- GitHub
+- Netlify
+- Supabase (database)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Version Control
 
-### `npm run eject`
+- Git
+- GitHub
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Notable Libraries
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Bcrypt
+- Passport.js
+- React Icons
+- React Router
+- Serverless HTTP
+- Supabase.js
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- User Registration and Authentication using Passport.js LocalStrategy.
+- Encryption with bcrypt
+- E-Commerce cart management
+- User account management
+- Products page with individual product details pages
+- Checkout/Order creation/stock update flow
+- Order History
 
-## Learn More
+## Testing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This app was tested manually with Chrome Dev Tools on Windows 10 and the Safari Browser on iPhone 12 (iOS 16.0).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Layout resolutions for the following devices were tested using Chrome Dev Tools
 
-### Code Splitting
+- iPhone SE
+- iPhone XR
+- iPhone 12 Pro
+- iPad Air
+- iPad Mini
+- Galaxy S8+
+- Galaxy S9+
+- Galaxy S20 Ultra
+- Surface Pro 7
+- Surface Duo
+- Pixel 5
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future Improvements
 
-### Analyzing the Bundle Size
+- Third-party authentication
+- Additional web security policies
+- Payment processing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## What I learned
 
-### Making a Progressive Web App
+I learned a lot about CORS, cookies, sessions, and troubleshooting bugs during this project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Notable References
 
-### Advanced Configuration
+I want to say a big thanks to Ahmad Kariem for helping me understand some of the more difficult concepts (especially in the beginning) and bugs that we ran into while working on our final projects together.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Visit Ahmad's [GitHub](https://github.com/YSquid)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Visit Ahmad's [LinkedIn](https://www.linkedin.com/in/ahmad-kariem/)
